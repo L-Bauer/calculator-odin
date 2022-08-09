@@ -1,4 +1,7 @@
-console.log("Hello World");
+
+const numbers = document.querySelectorAll('.numbers > button');
+
+var display_value = 0;
 
 //Math Functions - addition, subtraction, multiplication, division 
 function add(a,b) {
@@ -42,3 +45,11 @@ function operate(num1, num2, oper) {
     }
     return total;        
 }
+
+
+//Displays the numbers entered
+function display(e) {
+    console.log(e)
+}
+
+numbers.forEach(number => number.addEventListener('click',display))
