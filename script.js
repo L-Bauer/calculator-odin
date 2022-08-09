@@ -1,7 +1,9 @@
 
 const numbers = document.querySelectorAll('.numbers > button');
+const displayLabel = document.querySelector('.display_value');
 
-var display_value = 0;
+var displayValue = '';
+
 
 //Math Functions - addition, subtraction, multiplication, division 
 function add(a,b) {
@@ -48,8 +50,15 @@ function operate(num1, num2, oper) {
 
 
 //Displays the numbers entered
-function display(e) {
-    console.log(e)
+//Only one period can be in the number
+function display() {
+    if (displayValue.includes('.') && this.innerText == '.') {
+        return
+    }
+    else {
+        displayValue = displayValue.concat(this.innerText);
+        displayLabel.innerHTML = displayValue;
+    }
 }
 
 numbers.forEach(number => number.addEventListener('click',display))
