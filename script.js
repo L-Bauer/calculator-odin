@@ -1,7 +1,7 @@
 
 const numbers = document.querySelectorAll('.numbers > button');
 const displayLabel = document.querySelector('.display_value');
-const operators = document.querySelector('.operators');
+const operators = document.querySelectorAll('.operators > button');
 
 const enteredValue = [];
 
@@ -63,4 +63,11 @@ function numEntered() {
     }
 }
 
-numbers.forEach(number => number.addEventListener('click',numEntered))
+numbers.forEach(number => number.addEventListener('click',numEntered));
+
+
+operators.forEach(oper => oper.addEventListener('click',test));
+
+function test() {
+    console.log(this.innerText)
+}
