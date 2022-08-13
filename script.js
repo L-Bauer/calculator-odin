@@ -1,8 +1,9 @@
 
 const numbers = document.querySelectorAll('.numbers > button');
 const displayLabel = document.querySelector('.display_value');
+const operators = document.querySelector('.operators');
 
-var displayValue = '';
+const enteredValue = [];
 
 
 //Math Functions - addition, subtraction, multiplication, division 
@@ -51,14 +52,15 @@ function operate(num1, num2, oper) {
 
 //Displays the numbers entered
 //Only one period can be in the number
-function display() {
-    if (displayValue.includes('.') && this.innerText == '.') {
+function numEntered() {
+    if (enteredValue.includes('.') && this.innerText == '.') {
         return
     }
     else {
-        displayValue = displayValue.concat(this.innerText);
-        displayLabel.innerHTML = displayValue;
+        enteredValue.push(this.innerText);
+        console.log(enteredValue);
+        displayLabel.innerHTML = enteredValue.join("");
     }
 }
 
-numbers.forEach(number => number.addEventListener('click',display))
+numbers.forEach(number => number.addEventListener('click',numEntered))
