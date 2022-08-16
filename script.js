@@ -4,6 +4,7 @@ const displayLabel = document.querySelector('.display_value');
 const operators = document.querySelectorAll('.operators > button');
 
 const enteredValue = [];
+const operatesArray = ['+','-','*','/']
 
 
 //Math Functions - addition, subtraction, multiplication, division 
@@ -51,23 +52,19 @@ function operate(num1, oper, num2) {
 
 
 //Displays the numbers entered
-//Only one period can be in the number
 function numEntered() {
-    if (enteredValue.includes('.') && this.innerText == '.') {
+    //if last array element is operate and clicked button is operate
+    //then return
+    if (this.innerText ) {
         return
     }
     else {
         enteredValue.push(this.innerText);
-        console.log(enteredValue);
+        console.log(enteredValue[enteredValue.length - 1]);
         displayLabel.innerHTML = enteredValue.join("");
     }
+
 }
 
 numbers.forEach(number => number.addEventListener('click',numEntered));
-
-
-operators.forEach(oper => oper.addEventListener('click',test));
-
-function test() {
-    console.log(this.innerText)
-}
+operators.forEach(oper => oper.addEventListener('click',numEntered));
