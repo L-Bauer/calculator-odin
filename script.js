@@ -29,7 +29,7 @@ function div(a,b) {
 
 //Inputs 2 numbers and math operator
 //Outputs: final number from math operation
-function operate(num1, num2, oper) {
+function operate(num1, oper, num2) {
     if (oper == '+') {
         total = add(num1,num2);
     }
