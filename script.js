@@ -52,15 +52,26 @@ function operate(num1, oper, num2) {
 
 
 //Displays the numbers entered
+//If array[-1] is operator and button clicks is operators
+// 	Then replace array[-1] with new operator
+//Else if array[-1] is number and array has operator and button click is equals or button click is opertor
+// 	Then figure out math
+//else
+// 	Then add new number to array
 function numEntered() {
-    //if last array element is operate and clicked button is operate
-    //then return
-    if (this.innerText ) {
-        return
+    lastArrayElement = enteredValue[enteredValue.length - 1];
+    buttonClicked = this.innerText;
+
+    if (operatesArray.includes(lastArrayElement) && operatesArray.includes(buttonClicked)) {
+        enteredValue[enteredValue.length - 1] = buttonClicked;
+        displayLabel.innerHTML = enteredValue.join("");
     }
+    // else if () {
+
+    // }
     else {
-        enteredValue.push(this.innerText);
-        console.log(enteredValue[enteredValue.length - 1]);
+        enteredValue.push(buttonClicked);
+        console.log(lastArrayElement);
         displayLabel.innerHTML = enteredValue.join("");
     }
 
