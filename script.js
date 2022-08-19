@@ -2,6 +2,8 @@
 const numbers = document.querySelectorAll('.numbers > button');
 const displayLabel = document.querySelector('.display_value');
 const operators = document.querySelectorAll('.operators > button');
+const clearBtn = document.querySelector('.clear > button');
+const enterBtn = document.querySelector('.enter > button');
 
 const enteredValue = [];
 const operatesArray = ['+','-','*','/']
@@ -77,5 +79,17 @@ function numEntered() {
 
 }
 
+function clearArray() {
+    console.log('Clear');
+    enteredValue.length = 0;
+    displayLabel.innerHTML = enteredValue.join("");
+}
+
+function solveArray() {
+    console.log('Solving')
+}
+
 numbers.forEach(number => number.addEventListener('click',numEntered));
 operators.forEach(oper => oper.addEventListener('click',numEntered));
+clearBtn.addEventListener('click', clearArray);
+
