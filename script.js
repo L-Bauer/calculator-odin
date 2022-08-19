@@ -7,6 +7,7 @@ const enterBtn = document.querySelector('.enter > button');
 
 const enteredValue = [];
 const operatesArray = ['+','-','*','/']
+const numsArray = ['0','1','2','3','4','5','6','7','8','9','0']
 
 
 //Math Functions - addition, subtraction, multiplication, division 
@@ -68,8 +69,8 @@ function numEntered() {
         enteredValue[enteredValue.length - 1] = buttonClicked;
         displayLabel.innerHTML = enteredValue.join("");
     }
-    // else if () {
-
+    // else if (numsArray.includes(lastArrayElement)) {
+    //     solveArray();
     // }
     else {
         enteredValue.push(buttonClicked);
@@ -87,9 +88,16 @@ function clearArray() {
 
 function solveArray() {
     console.log('Solving')
+    hasOperator();
+}
+
+function hasOperator() {
+    for (let i = 0; i < enteredValue.length; i++) {
+        console.log(enteredValue[i])
+    }
 }
 
 numbers.forEach(number => number.addEventListener('click',numEntered));
 operators.forEach(oper => oper.addEventListener('click',numEntered));
 clearBtn.addEventListener('click', clearArray);
-
+enterBtn.addEventListener('click', solveArray);
