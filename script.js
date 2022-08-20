@@ -64,14 +64,15 @@ function operate(num1, oper, num2) {
 function numEntered() {
     lastArrayElement = enteredValue[enteredValue.length - 1];
     buttonClicked = this.innerText;
+    displayHasOperator = hasOperator();
 
     if (operatesArray.includes(lastArrayElement) && operatesArray.includes(buttonClicked)) {
         enteredValue[enteredValue.length - 1] = buttonClicked;
         displayLabel.innerHTML = enteredValue.join("");
     }
-    // else if (numsArray.includes(lastArrayElement)) {
-    //     solveArray();
-    // }
+    else if (operatesArray.includes(buttonClicked) && displayHasOperator) {
+        return
+    }
     else {
         enteredValue.push(buttonClicked);
         console.log(lastArrayElement);
@@ -93,7 +94,9 @@ function solveArray() {
 
 function hasOperator() {
     for (let i = 0; i < enteredValue.length; i++) {
-        console.log(enteredValue[i])
+        if (operatesArray.includes(enteredValue[i]) == true) {
+            return true
+        } 
     }
 }
 
