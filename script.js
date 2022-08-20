@@ -50,6 +50,7 @@ function operate(num1, oper, num2) {
         alert('Not a math operation');
         return
     }
+    total = total.toString();
     return total;        
 }
 
@@ -68,15 +69,14 @@ function numEntered() {
 
     if (operatesArray.includes(lastArrayElement) && operatesArray.includes(buttonClicked)) {
         enteredValue[enteredValue.length - 1] = buttonClicked;
-        displayLabel.innerHTML = enteredValue.join("");
+        display();
     }
     else if (operatesArray.includes(buttonClicked) && displayHasOperator) {
         return
     }
     else {
         enteredValue.push(buttonClicked);
-        console.log(lastArrayElement);
-        displayLabel.innerHTML = enteredValue.join("");
+        display();
     }
 
 }
@@ -84,12 +84,57 @@ function numEntered() {
 function clearArray() {
     console.log('Clear');
     enteredValue.length = 0;
-    displayLabel.innerHTML = enteredValue.join("");
+    display();
 }
 
 function solveArray() {
     console.log('Solving')
-    hasOperator();
+    let numArray1;
+    let num1Value;
+    let numArray2;
+    let num2Value;
+    let operator;
+    let operateIndex;
+    let valueResult;
+    //Find index of operators
+    //Split array num1 before operator index and num2 after operator index
+    //convert num1 and num2 arrays to int
+    operateIndex = locateOperatorIndex();
+    console.log(operateIndex);
+
+    operator = enteredValue.at(operateIndex);
+
+    numArray1 = enteredValue.slice(0,operateIndex);
+    num1Value = numArray1.join('');
+    num1Value = parseInt(num1Value);
+
+    numArray2 = enteredValue.slice(operateIndex + 1, enteredValue.length);
+    num2Value = numArray2.join('');
+    num2Value = parseInt(num2Value);
+    
+    valueResult = operate(num1Value, operator, num2Value);
+    clearArray();
+    resultsToArray(valueResult);
+
+}
+
+function resultsToArray (value) {
+    const tempArray = value.split('');
+    for (let i = 0; i < tempArray.length; i++) {
+        enteredValue.push(tempArray[i]);
+    }
+    display();
+}
+
+function locateOperatorIndex() {
+    let indexNum;
+
+    for (let i = 0; i < operatesArray.length; i++) {
+        indexNum = enteredValue.findIndex((element) => element == operatesArray[i]);
+        if (indexNum >= 0) { 
+            return indexNum
+        }
+    }
 }
 
 function hasOperator() {
@@ -98,6 +143,10 @@ function hasOperator() {
             return true
         } 
     }
+}
+
+function display() {
+    displayLabel.innerHTML = enteredValue.join("");
 }
 
 numbers.forEach(number => number.addEventListener('click',numEntered));
